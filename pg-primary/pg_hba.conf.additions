@@ -1,1 +1,1 @@
-host  replication  replia  md5
+host replication postgres pgstandby trust
