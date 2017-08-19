@@ -7,8 +7,6 @@ USER $pguser
 RUN initdb -k --pwfile=/passwd_file -A md5 -D $PGDATA ; mkdir $PGDATA/pg_log && chown postgres: $PGDATA/pg_log &&  mkdir $PGDATA/conf_dir &&  chown postgres: $PGDATA/conf_dir && echo "include_dir 'conf_dir'" >> $PGDATA/postgresql.conf
 COPY *.conf $PGDATA/conf_dir/
 COPY pg_hba.conf.additions /tmp
-RUN echo "host replication postgres pgstandby trust" >> $PGDATA/pg_hba.conf
-
 RUN cat /tmp/pg_hba.conf.additions  >> $PGDATA/pg_hba.conf
 VOLUME ["/postgres"]
 
